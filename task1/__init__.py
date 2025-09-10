@@ -20,6 +20,7 @@ class Car(Vehicle):
     def start_engine(self):
         logging.info("%s: Двигун запущено", self)
 
+
 class Motorcycle(Vehicle):
     def start_engine(self):
         logging.info("%s: Мотор заведено", self)
