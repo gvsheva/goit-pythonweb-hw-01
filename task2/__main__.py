@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-import sys
 import logging
 from typing import Iterable
 from . import DefaultLibrary, LibraryManager, Book
+
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -32,14 +33,16 @@ def main():
                 case "exit":
                     break
                 case _:
-                    print("Invalid command. Please try again.")
+                    logger.warning("Invalid command. Please try again.")
         except ValueError as ex:
-            print(f"Error: {ex}", file=sys.stderr)
+            logger.error("Error: %s", ex)
+        except Exception as ex:
+            logger.error("Unexpected error: %s", ex, exc_info=ex)
 
 
 def log_info_book_printer(books: Iterable[Book]):
     for book in books:
-        logging.info(
+        logger.info(
             "Title: %s, Author: %s, Year: %d", book.title, book.author, book.year
         )
 

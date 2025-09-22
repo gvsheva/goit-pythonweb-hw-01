@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+import logging
 from typing import Iterable, Protocol
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -25,12 +28,15 @@ class LibraryInterface(ABC):
 
 
 class BooksPrinter(Protocol):
-    def __call__(self, books: Iterable[Book]): ...
+    def __call__(self, books: Iterable[Book]):
+        ...
 
 
 def default_book_printer(books: Iterable[Book]):
     for book in books:
-        print(f"Title: {book.title}, Author: {book.author}, Year: {book.year}")
+        logger.info(
+            "Title: %s, Author: %s, Year: %d", book.title, book.author, book.year
+        )
 
 
 class DefaultLibrary(LibraryInterface):

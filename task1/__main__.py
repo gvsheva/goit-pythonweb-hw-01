@@ -4,8 +4,7 @@ import logging
 from . import USVehicleFactory, EUVehicleFactory
 
 
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+def main():
     us_factory = USVehicleFactory()
     eu_factory = EUVehicleFactory()
     vehicles = [
@@ -16,3 +15,8 @@ if __name__ == "__main__":
     ]
     for vehicle in vehicles:
         vehicle.start_engine()
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    main()

@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 import logging
 
+logger = logging.getLogger(__name__)
+
 
 class Vehicle(ABC):
     def __init__(self, make: str, model: str, spec: str):
@@ -18,12 +20,12 @@ class Vehicle(ABC):
 
 class Car(Vehicle):
     def start_engine(self):
-        logging.info("%s: Двигун запущено", self)
+        logger.info("%s: Двигун запущено", self)
 
 
 class Motorcycle(Vehicle):
     def start_engine(self):
-        logging.info("%s: Мотор заведено", self)
+        logger.info("%s: Мотор заведено", self)
 
 
 class VehicleFactory(ABC):
